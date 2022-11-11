@@ -22,7 +22,7 @@ const cities = [
   "Нью-Йорк"
 ]
 
-export const CityInput = ({ label, placeholder }: InputProps) => {
+export const CityInput = ({ label, name, placeholder, value, onInput }: InputProps) => {
   return (
     <Autocomplete
       freeSolo
@@ -31,7 +31,10 @@ export const CityInput = ({ label, placeholder }: InputProps) => {
       sx={{width: 250}}
       renderInput={(params) => 
         <StyledTextField {...params} placeholder={placeholder} 
+        name={name}
         label={label}
+        value={value}
+        onChange={onInput}
           InputLabelProps={{  
             shrink: true,
             className: "inputLabel",

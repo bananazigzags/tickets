@@ -9,11 +9,14 @@ const StyledTextField = styled(TextField)`
   },
 `
 
-export const DateInput = ({ label }: Omit<InputProps, "placeholder">) => {
+export const DateInput = ({ name, label, value, onInput }: Omit<InputProps, "placeholder">) => {
   return (
     <StyledTextField
       placeholder="дд.мм.гг"
+      name={name}
       label={label}
+      value={value}
+      onChange={onInput}
       InputLabelProps={{ className: "inputLabel"}}
       InputProps={{
         startAdornment: <Calendar width="30px" />
