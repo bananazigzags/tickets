@@ -27,6 +27,13 @@ export const SearchPanel = () => {
     setFlightsForm({...flightsForm, [event.target.name]: event.target.value })
   }
 
+  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>, fieldName?: string, selectedOption?: string) => {
+    selectedOption && fieldName ? setFlightsForm({...flightsForm, [fieldName]: selectedOption }) :
+    setFlightsForm({...flightsForm, [event.target.name]: event.target.value })
+  }
+
+  console.log(flightsForm);
+
   const isSearchValid = (form: SearchState) => {
     return Object.values(form).every(entry => entry.length > 0) && form.dateStart.match(DATE_REGEX) && form.dateFinish.match(DATE_REGEX)
   }
@@ -53,14 +60,14 @@ export const SearchPanel = () => {
               label="Откуда"
               placeholder="Город вылета"
               value={flightsForm.from}
-              onInput={handleChange}
+              onInput={handleCityChange}
               name="from"
             />
             <CityInput 
               label="Куда"
               placeholder="Город прилета"
               value={flightsForm.to}
-              onInput={handleChange}
+              onInput={handleCityChange}
               name="to"
             />
             <DateInput
