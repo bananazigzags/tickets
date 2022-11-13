@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import { CityInput, DateInput } from "../index";
 
-import { DATE_REGEX } from "../../constants";
+import { DATE_REGEX } from "../constants";
 
 type SearchPanelProps = {
   type: "avia" | "train" | "bus"
@@ -39,15 +39,13 @@ export const SearchPanel = ({type}: SearchPanelProps) => {
   const isSearchValid = (form: SearchState) => {
     const requiredEntries = ["from", "to", "dateStart"]
     if(form.dateFinish.length > 0 && !form.dateFinish?.match(DATE_REGEX)) return false;
-    return requiredEntries.every(entry => form[entry].length > 0) && form.dateStart.match(DATE_REGEX)
+    if(requiredEntries.every(entry => form[entry].length > 0) && form.dateStart.match(DATE_REGEX)) return true
   }
 
   const handleSearch = (e: React.SyntheticEvent) => {
     e.preventDefault()
-    if(isSearchValid(flightsForm)) {
-      dispatch(setSearch(flightsForm));
-      router.push(`/${type}/info`);
-    }
+    dispatch(setSearch(flightsForm));
+    router.push(`/${type}/info`);
   }
 
   return (
@@ -113,9 +111,14 @@ export const SearchPanel = ({type}: SearchPanelProps) => {
                 "&:active": {
                   backgroundColor: "#3E67B7",
                 },
+                "&:disabled": {
+                  backgroundColor: "#B7BAC1",
+                  color: "white",
+                },
                 borderRadius: 1.25,
                 textTransform: "unset",
               }}
+              disabled={!isSearchValid(flightsForm)}
             >Найти билеты</Button>
           </Stack>
         </Box>
