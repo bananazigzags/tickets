@@ -13,7 +13,11 @@ import { CityInput, DateInput } from "../index";
 
 import { DATE_REGEX } from "../../constants";
 
-export const SearchPanel = () => {
+type SearchPanelProps = {
+  type: "avia" | "train" | "bus"
+}
+
+export const SearchPanel = ({type}: SearchPanelProps) => {
   const [flightsForm, setFlightsForm] = useState({
     from: "",
     to: "",
@@ -42,7 +46,7 @@ export const SearchPanel = () => {
     e.preventDefault()
     if(isSearchValid(flightsForm)) {
       dispatch(setSearch(flightsForm));
-      router.push("/avia/info");
+      router.push(`/${type}/info`);
     }
   }
 
@@ -58,14 +62,14 @@ export const SearchPanel = () => {
           <Stack direction="row" spacing={4} sx={{p: 3.75}}>
             <CityInput
               label="Откуда"
-              placeholder="Город вылета"
+              placeholder={`Город ${type === "avia" ? "вылета" : "отправления"}`}
               value={flightsForm.from}
               onInput={handleCityChange}
               name="from"
             />
             <CityInput 
               label="Куда"
-              placeholder="Город прилета"
+              placeholder={`Город ${type === "avia" ? "прилета" : "прибытия"}`}
               value={flightsForm.to}
               onInput={handleCityChange}
               name="to"

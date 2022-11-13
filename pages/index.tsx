@@ -25,13 +25,13 @@ const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1514970746-d4a465d514d0',
     title: 'Trains',
-    link: "/",
+    link: "/train",
     icon: <TrainIcon />,
   },
   {
     img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800',
     title: 'Buses',
-    link: "/",
+    link: "/bus",
     icon: <BusIcon />,
   },
 ];

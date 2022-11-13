@@ -7,6 +7,6 @@
   align-items: center;
 }
 
-.luggageIcon {
-  padding: 10px;
+.luggageIcons {
+  display: flex;
 }

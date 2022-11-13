@@ -13,8 +13,7 @@ export default function Info() {
         dateStart={searchData.dateStart}
         dateFinish={searchData.dateFinish}
         isLuggageIncluded={true}
-        carrier="S7 Airlines"
-        type="avia"
+        carrier="РЖД"
       />
     </SearchResultLayout>
   )

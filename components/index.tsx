@@ -1,5 +1,7 @@
 export { CityInput } from "./CityInput/CityInput";
 export { DateInput } from "./DateInput/DateInput";
+export { SearchLayout } from "./SearchLayout/SearchLayout"
+export { SearchResultLayout } from "./SearchResultLayout/SearchResultLayout"
 export { SearchPanel } from "./SearchPanel/SearchPanel";
 export { InfoBox } from "./InfoBox/InfoBox";
 export { Logo } from "./Logo/Logo";
@@ -7,4 +9,4 @@ export { SearchResult } from "./SearchResult/SearchResult";
 export { TravelDetails } from "./TravelDetails/TravelDetails";
 export { TimeButton } from "./TimeButton/TimeButton";
 export { StepsList } from "./StepsList/StepsList";
-export { Flight } from "./Flight/Flight";
+export { Journey } from "./Journey/Journey";

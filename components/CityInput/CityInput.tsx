@@ -36,6 +36,7 @@ export const CityInput = ({ label, name, placeholder, value, onInput }: InputPro
       options={cities}
       open={open}
       sx={{width: 250}}
+      onBlur={() => {setOpen(false)}}
       onChange={(e, selectedOption) => handleSelect(e, selectedOption)}
       renderInput={(params) => 
         <StyledTextField {...params} placeholder={placeholder} 

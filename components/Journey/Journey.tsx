@@ -7,14 +7,12 @@ import {
   TimeButton,
   StepsList
 } from "../index";
-import S7Icon from "../../public/logo.svg";
 import CarryOnIcon from "../../public/carryon.svg";
 import LuggageIcon from "../../public/luggage.svg";
-import { TimePeriod } from "../types";
+import { TimePeriod, Map } from "../types";
 import { citiesCodes } from "../constants";
 
-
-type FlightProps = {
+type JourneyProps = {
   from: string,
   to: string,
   availableTimes?: TimePeriod[],
@@ -22,16 +20,24 @@ type FlightProps = {
   dateFinish: string,
   isLuggageIncluded: boolean,
   twoWay?: boolean,
+  carrier: string,
+  type?: string,
 }
 
-export const Flight = (
-  { availableTimes, from, to, dateStart, dateFinish, isLuggageIncluded, twoWay }: FlightProps
+export const Journey = (
+  { availableTimes, from, to, dateStart, dateFinish, isLuggageIncluded, twoWay, carrier, type }: JourneyProps
   ) => {
   const time = availableTimes && availableTimes[0];
   const [selectedTime, setSelectedTime] = useState(time);
 
   const handleClick = (time: TimePeriod) => {
     setSelectedTime(time);
+  }
+
+const icons: Map = {
+    "S7 Airlines": "/logo.svg",
+    "РЖД": "/trainlogo.svg",
+    "FlixBus": "/flixbuslogo.svg",
   }
 
   return (
@@ -44,7 +50,7 @@ export const Flight = (
             spacing={4}
           >
             <InfoBox text="Невозвратный" />
-            <Logo text="S7 Airlines" icon={<S7Icon />}/>
+            <Logo text={carrier} iconUrl={icons[carrier]}/>
           </Stack>
         </Stack>
       </Grid>
@@ -71,7 +77,7 @@ export const Flight = (
             />
           </Grid>
           <Grid item xs={6} sx={{padding: "0 38px"}}>
-            <StepsList steps={[citiesCodes[from], citiesCodes[to]]} />
+            <StepsList steps={type === "avia" ?[citiesCodes[from], citiesCodes[to]] : [from, to]} />
           </Grid>
           <Grid item xs={1}>
             <TravelDetails 

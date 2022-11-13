@@ -1,9 +1,9 @@
 import { SearchLayout, SearchPanel } from "../../components/index";
 
-export default function Avia() {
+export default function Bus() {
   return (
     <SearchLayout>
-      <SearchPanel type="avia" /> 
+      <SearchPanel type="bus"/> 
     </SearchLayout>
   )
 }

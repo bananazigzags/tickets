@@ -12,6 +12,10 @@ export type Map = {
   [key: string]: string;
 }
 
+export type IconMap = {
+  [key: string]: SVGElement
+}
+
 export interface TextProp {
   text: string;
 }

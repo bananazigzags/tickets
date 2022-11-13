@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { Flight } from "../index";
+import { Journey } from "../index";
 import styles from "./SearchResult.module.css";
 import { TimePeriod } from "../types";
 
@@ -9,6 +9,8 @@ type SearchResultProps = {
   dateStart: string,
   dateFinish: string,
   isLuggageIncluded: boolean,
+  carrier: string,
+  type?: string,
 }
 
 const availableTimes: TimePeriod[] = [
@@ -21,7 +23,7 @@ const PRICE_ONE_WAY = "4 150 ₽"
 const PRICE_TWO_WAY = "9 350 ₽"
 
 export const SearchResult = (
-  {from, to, dateStart, dateFinish, isLuggageIncluded = false}: SearchResultProps
+  {from, to, dateStart, dateFinish, carrier, type, isLuggageIncluded = false}: SearchResultProps
   ) => {
   return (
     <Grid
@@ -33,22 +35,26 @@ export const SearchResult = (
       }}
     >
       <Grid item xs={10}>
-        <Flight 
+        <Journey 
           from={from}
           to={to}
           dateStart={dateStart}
           dateFinish={dateStart}
           isLuggageIncluded={isLuggageIncluded}
           availableTimes={!dateFinish ? availableTimes : undefined}
+          carrier={carrier}
+          type={type}
         />
         { dateFinish ? (
-          <Flight 
+          <Journey 
             from={to}
             to={from}
             dateStart={dateFinish}
             dateFinish={dateFinish}
             isLuggageIncluded={isLuggageIncluded}
             twoWay
+            carrier={carrier}
+            type={type}
           />
         ) : null
         }
