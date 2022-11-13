@@ -1,3 +1,10 @@
-export { CityInput } from "./CityInput";
-export { DateInput } from "./DateInput";
-export { SearchPanel } from "./SearchPanel";
+export { CityInput } from "./CityInput/CityInput";
+export { DateInput } from "./DateInput/DateInput";
+export { SearchPanel } from "./SearchPanel/SearchPanel";
+export { InfoBox } from "./InfoBox/InfoBox";
+export { Logo } from "./Logo/Logo";
+export { SearchResult } from "./SearchResult/SearchResult";
+export { TravelDetails } from "./TravelDetails/TravelDetails";
+export { TimeButton } from "./TimeButton/TimeButton";
+export { StepsList } from "./StepsList/StepsList";
+export { Flight } from "./Flight/Flight";

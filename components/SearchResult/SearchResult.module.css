@@ -1,0 +1,12 @@
+.price {
+  font-size: 32px;
+  font-weight: 700;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.luggageIcon {
+  padding: 10px;
+}

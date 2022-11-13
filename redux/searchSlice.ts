@@ -2,10 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface SearchState {
-  from: string,
-  to: string,
-  dateStart: string,
-  dateFinish: string,
+  [key: string]: string;
 }
 
 const initialState: SearchState = {

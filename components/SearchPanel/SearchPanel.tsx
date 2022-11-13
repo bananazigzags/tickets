@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { setSearch } from "../redux/searchSlice"
-import { SearchState } from "../redux/searchSlice";
+import { setSearch } from "../../redux/searchSlice"
+import { SearchState } from "../../redux/searchSlice";
 
 import {
   Box,
   Stack,
   Button,
 } from "@mui/material"
-import { CityInput, DateInput } from "./index";
+import { CityInput, DateInput } from "../index";
 
-import { DATE_REGEX } from "../constants";
+import { DATE_REGEX } from "../../constants";
 
 export const SearchPanel = () => {
   const [flightsForm, setFlightsForm] = useState({
@@ -32,10 +32,10 @@ export const SearchPanel = () => {
     setFlightsForm({...flightsForm, [event.target.name]: event.target.value })
   }
 
-  console.log(flightsForm);
-
   const isSearchValid = (form: SearchState) => {
-    return Object.values(form).every(entry => entry.length > 0) && form.dateStart.match(DATE_REGEX) && form.dateFinish.match(DATE_REGEX)
+    const requiredEntries = ["from", "to", "dateStart"]
+    if(form.dateFinish.length > 0 && !form.dateFinish?.match(DATE_REGEX)) return false;
+    return requiredEntries.every(entry => form[entry].length > 0) && form.dateStart.match(DATE_REGEX)
   }
 
   const handleSearch = (e: React.SyntheticEvent) => {
@@ -100,6 +100,7 @@ export const SearchPanel = () => {
             <Button
               type="submit"
               sx={{
+                p: "10px 28px",
                 backgroundColor: "#5C87DB",
                 color: "white",
                 "&:hover": {
@@ -108,7 +109,8 @@ export const SearchPanel = () => {
                 "&:active": {
                   backgroundColor: "#3E67B7",
                 },
-                borderRadius: 1.25
+                borderRadius: 1.25,
+                textTransform: "unset",
               }}
             >Найти билеты</Button>
           </Stack>

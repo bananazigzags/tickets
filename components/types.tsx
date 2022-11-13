@@ -7,3 +7,20 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onInput?: (event: ChangeEvent<HTMLInputElement>, name?: string, selectedOption?: string) => void;
   name?: string
 }
+
+export type Map = {
+  [key: string]: string;
+}
+
+export interface TextProp {
+  text: string;
+}
+
+export interface TimeButtonProps {
+  start: string;
+  finish: string;
+  active: boolean;
+  onClick: () => void;
+}
+
+export type TimePeriod = Omit<TimeButtonProps, "active" | "onClick">

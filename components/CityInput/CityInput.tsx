@@ -6,23 +6,14 @@ import {
 } from "@mui/material"
 
 import { styled } from "@mui/material/styles";
-import { InputProps } from "./types";
+import { InputProps } from "../types";
+import { cities } from "../constants";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
     background-color: white
   },
 `
-
-const cities = [
-  "Москва",
-  "Санкт-Петербург",
-  "Владивосток",
-  "Новосибирск",
-  "Сочи",
-  "Лондон",
-  "Нью-Йорк"
-]
 
 export const CityInput = ({ label, name, placeholder, value, onInput }: InputProps) => {
   const [open, setOpen] = useState(false);
@@ -34,8 +25,6 @@ export const CityInput = ({ label, name, placeholder, value, onInput }: InputPro
     }
   }
   const handleSelect = (e: SyntheticEvent, selectedOption: string) => {
-    console.log("hello")
-    console.log(e.target)
     onInput && onInput(e as ChangeEvent<HTMLInputElement>, name, selectedOption);
     setOpen(false);
   }

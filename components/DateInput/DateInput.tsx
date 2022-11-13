@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
-import Calendar from "../public/calendar 1.svg";
+import Calendar from "../../public/calendar 1.svg";
 import { styled } from "@mui/material/styles";
-import { InputProps } from "./types";
+import { InputProps } from "../types";
 
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
