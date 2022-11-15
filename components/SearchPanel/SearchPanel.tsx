@@ -17,6 +17,22 @@ type SearchPanelProps = {
   type: "avia" | "train" | "bus"
 }
 
+const REQUIRED_ENTRIES = ["from", "to", "dateStart"]
+
+const strToDate = (dateString: string) => {
+  let dateStrArr: string[] = dateString.split(".");
+  return new Date(+(`20${dateStrArr[2]}`), +(dateStrArr[1]) - 1, +dateStrArr[0])
+} 
+const isReturnDateValid = (dateStart: string, dateFinish: string) => {
+  return strToDate(dateFinish) >= strToDate(dateStart)
+}
+
+const isSearchValid = (form: SearchState) => {
+  if(form.dateFinish.length > 0 && !form.dateFinish?.match(DATE_REGEX)) return false;
+  if(form.dateFinish && !isReturnDateValid(form.dateStart, form.dateFinish)) return false;
+  if(REQUIRED_ENTRIES.every(entry => form[entry].length > 0) && form.dateStart.match(DATE_REGEX)) return true
+}
+
 export const SearchPanel = ({type}: SearchPanelProps) => {
   const [flightsForm, setFlightsForm] = useState({
     from: "",
@@ -34,12 +50,6 @@ export const SearchPanel = ({type}: SearchPanelProps) => {
   const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>, fieldName?: string, selectedOption?: string) => {
     selectedOption && fieldName ? setFlightsForm({...flightsForm, [fieldName]: selectedOption }) :
     setFlightsForm({...flightsForm, [event.target.name]: event.target.value })
-  }
-
-  const isSearchValid = (form: SearchState) => {
-    const requiredEntries = ["from", "to", "dateStart"]
-    if(form.dateFinish.length > 0 && !form.dateFinish?.match(DATE_REGEX)) return false;
-    if(requiredEntries.every(entry => form[entry].length > 0) && form.dateStart.match(DATE_REGEX)) return true
   }
 
   const handleSearch = (e: React.SyntheticEvent) => {
